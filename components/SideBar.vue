@@ -1,10 +1,19 @@
 <template>
   <aside class="sidebar">
-    <header class="sidebar__header"></header>
+    <header class="sidebar__header">
+      <h1 class="logo">K8MANAGE</h1>
+    </header>
     <section class="sidebar__body">
+      <menu-item title="Workloads" to="workloads"></menu-item>
       <div class="sidebar__title">
         <div class="sidebar__title__label">
           Namespaces
+        </div>
+      </div>
+      <menu-item v-for="item in namespaces" :key="item" :title="item"></menu-item>
+      <div class="sidebar__title">
+        <div class="sidebar__title__label">
+          Filters
         </div>
       </div>
       <menu-item v-for="item in namespaces" :key="item" :title="item"></menu-item>
@@ -49,7 +58,7 @@ export default {
     },
   },
   mounted() {
-    for (let i = 0; i < 100; i += 1) {
+    for (let i = 0; i < 15; i += 1) {
       this.namespaces.push(`Cluster #${i}`);
     }
   },
@@ -67,7 +76,7 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: var(--sidebar-width);
   background: var(--sidebar-background-color);
   border-right: 1px solid var(--sidebar-border-color);
   display: flex;
@@ -83,13 +92,13 @@ export default {
 .sidebar__title {
   display: flex;
   margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 20px;
   opacity: 0.75;
 }
 
 .sidebar__title__label {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   flex: 1;
 }
 
@@ -106,5 +115,18 @@ export default {
 
 .feather {
   display: inline-block;
+}
+
+.logo {
+  font-family: "Kufam", sans-serif;
+  text-align: center;
+  font-size: 40px;
+}
+
+.sidebar__header {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
